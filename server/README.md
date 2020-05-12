@@ -3,21 +3,21 @@
 - npm i -g @nestjs/cli
 - nest new server
 
+## 安装插件
+- npm install mongoose @types/mongoose nestjs-typegoose @typegoose/typegoose (typegoose需要依赖nest\mongoose库<a href="https://www.npmjs.com/package/nestjs-typegoose">mongo数据库</a>)
+- npm i class-validator --save (<a href="https://www.npmjs.com/package/class-validator">规则校验装饰器</a>)
+- npm i nestjs-mongoose-crud (B站大佬的自动生成crud接口以及生成接口文档包-图方便^_^)
+- npm i --save @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator<a href="https://docs.nestjs.cn/6/recipes?id=crud">crud,目前只支持typeORM数据库</a>
+
+
+
 ## 使用
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
+直接查看package.json了解.
 
 ## 创建模块
 - nest g(generate) mo(module)
+- 为子项目添加模块 : nest g mo -p admin users (表示在admin这个子项目下添加users模块)
+- 为子项目添加控制器 : nest g co -p admin users (表示在admin这个子项目下添加users控制器)
 
 ## 生成接口文档
 <a href="https://docs.nestjs.cn/6/recipes?id=openapi-swagger"></a>
@@ -33,21 +33,11 @@ $ npm run start:prod
 - @ApiTags('默认')标记当前下面这个控制器要应用哪个标签
 - ApiOperation({ title: '创建帖子', description: 'get帖子的接口' }) 接口名称及描述
 
-## Installation
+## 创建应用
+- nest g application(app) 创建应用
+- nest g lib db 创建公共模块
 
-```bash
-$ npm install
-```
+## mongoose-api 
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+1. prop 基础字段，arrayProp 数组字段
+2. 表间关联 Ref<xxx>
