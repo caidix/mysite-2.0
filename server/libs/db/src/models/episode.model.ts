@@ -1,4 +1,5 @@
-import { prop } from "@typegoose/typegoose";
+import { prop, Ref } from "@typegoose/typegoose";
+import { Course } from "./course.model";
 
 export class Episode {
   @prop()
@@ -6,4 +7,8 @@ export class Episode {
 
   @prop()
   file: string
+
+  @prop({ ref: 'Course' })
+  course: Ref<Course>
+
 }
