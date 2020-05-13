@@ -2,6 +2,7 @@
 ## 安装
 - npm i -g @nestjs/cli
 - nest new server
+- 更新：yarn upgrade-interactive --latest
 
 ## 安装插件
 - npm install mongoose @types/mongoose nestjs-typegoose @typegoose/typegoose (typegoose需要依赖nest\mongoose库<a href="https://www.npmjs.com/package/nestjs-typegoose">mongo数据库</a>)
@@ -9,7 +10,7 @@
 - npm i nestjs-mongoose-crud (B站大佬的自动生成crud接口以及生成接口文档包-图方便^_^)
 - npm i --save @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator<a href="https://docs.nestjs.cn/6/recipes?id=crud">crud,目前只支持typeORM数据库</a>
 
-
+- npm i @nestjs/config 加载环境变量<a href="https://docs.nestjs.com/techniques/configuration">https://docs.nestjs.com/techniques/configuration</a>
 
 ## 使用
 直接查看package.json了解.
@@ -39,5 +40,5 @@
 
 ## mongoose-api 
 
-1. prop 基础字段，arrayProp 数组字段
+1. prop 基础字段，arrayProp({ref: 关联表, localField：关联表字段， foreignField: 主表展示字段}) 数组字段
 2. 表间关联 Ref<xxx>
