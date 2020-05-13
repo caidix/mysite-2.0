@@ -19,18 +19,18 @@ const MAO = require('multer-aliyun-oss');
               region: process.env.OSS_REGION,
               accessKeyId: process.env.OSS_ACCESS_KEY_ID,
               accessKeySecret: process.env.OSS_ACCESS_KEY_SECRET,
-              bucket: process.env.OSS_BUCKET
-            }
-          })
-        }
-      }
+              bucket: process.env.OSS_BUCKET,
+            },
+          }),
+        };
+      },
     }),
     DbModule,
     UsersModule,
     CoursesModule,
-    EpisodesModule
+    EpisodesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

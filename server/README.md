@@ -10,7 +10,7 @@
 - npm i nestjs-mongoose-crud (B站大佬的自动生成crud接口以及生成接口文档包-图方便^_^)
 - npm i --save @nestjsx/crud @nestjsx/crud-typeorm class-transformer class-validator<a href="https://docs.nestjs.cn/6/recipes?id=crud">crud,目前只支持typeORM数据库</a>
 
-- npm i @nestjs/config 加载环境变量<a href="https://docs.nestjs.com/techniques/configuration">https://docs.nestjs.com/techniques/configuration</a>
+- npm i @nestjs/config 加载环境变量<a href="https://docs.nestjs.com/techniques/configuration">https://docs.nestjs.com/techniques/configuration</a>本项目将会用到的process.env环境变量单独放置在common公共模块中，需要使用的项目只需要在module中引用。由于imports函数是并行执行的，所以在引用时使用环境变量的模块需要使用异步加载（useFactory函数）。
 
 ## 使用
 直接查看package.json了解.

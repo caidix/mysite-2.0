@@ -5,7 +5,6 @@ import { DbModule } from 'libs/db';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [],
       isGlobal: true
     }),
     DbModule
