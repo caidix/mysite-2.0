@@ -1,45 +1,72 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        blog
-        {{courses}}
-      </h1>
-      <h2 class="subtitle">
-        Welcome to the iView + Nuxt.js template
-      </h2>
-      <div class="links">
-        <Button type="primary" target="_blank" to="https://nuxtjs.org/">
-          Documentation
-        </Button>
-        <Button target="_blank" to="https://github.com/nuxt/nuxt.js">
-          GitHub
-        </Button>
-        <Button nuxt to="article">
-          iView
-        </Button>
-      </div>
-    </div>
+    <Form ref="formInline" :model="formInline" :rules="ruleInline" inline>
+      <FormItem prop="username">
+        <Input type="text" v-model="formInline.username" placeholder="Username">
+        <Icon type="ios-person-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem prop="password">
+        <Input type="password" v-model="formInline.password" placeholder="Password">
+        <Icon type="ios-lock-outline" slot="prepend"></Icon>
+        </Input>
+      </FormItem>
+      <FormItem>
+        <Button type="primary" @click="handleSubmit('formInline')">Signin</Button>
+      </FormItem>
+    </Form>
+    <div v-if="$store.state.auth.user">{{$store.state.auth.user.username || ''}}</div>
   </div>
 </template>
 
 <script>
-  import Logo from '~/components/Logo.vue'
   export default {
-    components: {
-      Logo
-    },
-    async asyncData({ $axios }) {
-      const data = await $axios.$get('/courses')
-      console.log(data)
+    data() {
       return {
-        courses: data.data
+        formInline: {
+          username: '',
+          password: ''
+        },
+        ruleInline: {
+          username: [
+            { required: true, message: 'Please fill in the username name', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, message: 'Please fill in the password.', trigger: 'blur' },
+            { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+          ]
+        }
       }
     },
+    methods: {
+      handleSubmit(name) {
+        this.$refs[name].validate((valid) => {
+          if (valid) {
+            this.$Message.success('Success!');
+            this.login()
+          } else {
+            this.$Message.error('Fail!');
+          }
+        })
+      },
+      async login() {
+        try {
+          let response = await this.$auth.loginWith('local', { data: this.formInline })
+          console.log(response)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      // async asyncData({ $axios }) {
+      //   const data = await $axios.$get('/courses')
+      //   console.log(data)
+      //   return {
+      //     courses: data.data
+      //   }
+      // },
+    }
   }
 </script>
-
 <style>
   .container {
     margin: 0 auto;
@@ -48,27 +75,5 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
-
-  .title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-      'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
   }
 </style>

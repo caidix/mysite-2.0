@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DbModule } from 'libs/db';
-import { UsersModule } from './users/users.module';
 import { CoursesModule } from './courses/courses.module';
 import { EpisodesModule } from './episodes/episodes.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { CommonModule } from '@app/common';
+import { AuthModule } from 'apps/server/src/auth/auth.module';
 const MAO = require('multer-aliyun-oss');
 @Module({
   imports: [
@@ -26,7 +26,7 @@ const MAO = require('multer-aliyun-oss');
       },
     }),
     DbModule,
-    UsersModule,
+    AuthModule,
     CoursesModule,
     EpisodesModule,
   ],

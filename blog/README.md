@@ -20,3 +20,5 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+yarn add @nuxtjs/auth @nuxtjs/axios

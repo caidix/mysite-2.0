@@ -13,11 +13,19 @@ export class AuthController {
   constructor(
     private jwtService: JwtService,
     @InjectModel(User) private userModel: ReturnModelType<typeof User>,
-  ) {}
+  ) { }
   @Post('register')
   @ApiOperation({ summary: '注册' })
   async register(@Body() dto: User) {
     const { username, password } = dto;
+    const result = await this.userModel.find({ username })
+    if (result && result.length > 0) {
+      return {
+        code: -1,
+        data: '',
+        message: '已有联系人!'
+      }
+    }
     const user = await this.userModel.create({
       username,
       password,
@@ -30,14 +38,18 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   async login(@Body() dto: LoginDto, @CurrentUser() user: DocumentType<User>) {
     return {
-      token: this.jwtService.sign(String(user._id)),
+      code: 0,
+      message: "登陆成功",
+      data: {
+        token: this.jwtService.sign(String(user._id))
+      },
     };
   }
 
   @Get('user')
   @ApiOperation({ summary: '获取个人信息' })
   @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth() 
+  @ApiBearerAuth()
   async user(@CurrentUser() user: DocumentType<User>) {
     return user;
   }

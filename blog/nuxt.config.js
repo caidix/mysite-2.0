@@ -42,7 +42,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/auth'
   ],
   /*
    ** Axios module configuration
@@ -52,6 +53,19 @@ export default {
   /*
    ** Build configuration
    */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/auth/logout' },
+          user: { url: '/auth/user', method: 'get', propertyName: false }
+        }
+        // tokenRequired: true,
+        // tokenType: 'bearer'
+      }
+    }
+  },
   build: {
     /*
      ** You can extend webpack config here

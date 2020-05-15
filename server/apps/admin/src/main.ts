@@ -11,11 +11,12 @@ async function bootstrap() {
     .setDescription('cd-admin api-center')
     .setVersion('1.0')
     .addTag('admin')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   const PORT = process.env.ADMIN_PORT || 3000
   SwaggerModule.setup('api-docs', app, document);
-  
+
   await app.listen(PORT);
   console.log(`http://localhost:${PORT}/api-docs`)
 }
