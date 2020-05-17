@@ -7,6 +7,8 @@ import { EpisodesModule } from './episodes/episodes.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { CommonModule } from '@app/common';
 import { AuthModule } from 'apps/server/src/auth/auth.module';
+import { TagsModule } from './tags/tags.module';
+import { ArticlesModule } from './articles/articles.module';
 const MAO = require('multer-aliyun-oss');
 @Module({
   imports: [
@@ -29,6 +31,8 @@ const MAO = require('multer-aliyun-oss');
     AuthModule,
     CoursesModule,
     EpisodesModule,
+    ArticlesModule,
+    TagsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

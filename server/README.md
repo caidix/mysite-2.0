@@ -39,8 +39,18 @@
 ## 创建应用
 - nest g application(app) 创建应用
 - nest g lib db 创建公共模块
-
+- nest g in 创建拦截器
+- nest g f 创建filter
 ## mongoose-api 
 
 1. <a href="https://typegoose.github.io/typegoose/docs/decorators/prop/">@typegoose/typegoose文档</a>
 2. 表间关联 Ref<xxx>
+
+## 错误状态码|信息回调方案
+> @Res() res
+return res.status(HttpStatus.BAD_REQUEST).send({
+  errorCode: 10001,
+  errorMessage: '用户编号错误'
+});
+throw new HttpException('用户编号错误', HttpStatus.BAD_REQUEST);
+<a href="https://www.jianshu.com/p/ebd80c9c6db1">相关文章</a>
