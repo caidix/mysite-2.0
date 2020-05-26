@@ -13,19 +13,18 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { ApiTags, ApiQuery, ApiOperation } from '@nestjs/swagger';
 import { QueryDto } from '../articles/dto/articles.dto';
-import { createTag } from './categories.dto';
-import { Category } from 'libs/db/models/blog/category.model';
+import { createGather } from './gather.dto';
+import { Gather } from 'libs/db/models/blog/gather.model';
 
-@Controller('admin/categories')
-@ApiTags('分类')
-export class CategoriesController {
+@Controller('admin/gather')
+@ApiTags('归档')
+export class GatherController {
   constructor(
-    @InjectModel(Category)
-    private readonly model: ReturnModelType<typeof Category>,
+    @InjectModel(Gather) private readonly model: ReturnModelType<typeof Gather>,
   ) {}
 
   @Get()
-  @ApiOperation({ summary: '获取分类列表' })
+  @ApiOperation({ summary: '获取归档列表' })
   @ApiQuery({
     name: 'query',
     type: String,
@@ -55,13 +54,13 @@ export class CategoriesController {
     return {
       code: 0,
       data: { data: list, total },
-      message: '获取分类列表成功',
+      message: '获取归档列表成功',
     };
   }
 
   @Post()
-  @ApiOperation({ summary: '创建分类列表' })
-  async create(@Body() body: createTag) {
+  @ApiOperation({ summary: '创建归档列表' })
+  async create(@Body() body: createGather) {
     const { name } = body;
     try {
       const res = await this.model.find({ name });
@@ -69,7 +68,7 @@ export class CategoriesController {
         return {
           code: -1,
           data: res,
-          message: '已存在该分类',
+          message: '已存在该归档',
         };
       }
       const data = await this.model.create({ ...body });
@@ -90,8 +89,8 @@ export class CategoriesController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: '修改分类' })
-  async update(@Param('id') id: string, @Body() body: createTag) {
+  @ApiOperation({ summary: '修改归档' })
+  async update(@Param('id') id: string, @Body() body: createGather) {
     try {
       const res = await this.model.findOneAndUpdate({ _id: id }, body, {
         new: true,

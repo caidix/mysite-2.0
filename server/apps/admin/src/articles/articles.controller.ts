@@ -13,6 +13,7 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { QueryDto } from './dto/articles.dto';
+import { get } from 'http';
 
 @Controller('admin/articles')
 @ApiTags('文章')
@@ -31,20 +32,41 @@ export class ArticlesController {
     description: 'Query options',
   })
   async list(@Query() query: QueryDto) {
-    let { limit = 10, page = 1, skip = 0 } = query;
+    let { limit = 10, page = 1, skip = 0, all = false } = query,
+      list = [];
     if (skip < 1) {
       skip = (page - 1) * limit;
     }
-    const list = await this.model
-      .find()
-      .skip(skip)
-      .limit(Number(limit));
+    if (all) {
+      list = await this.model.find();
+    } else {
+      list = await this.model
+        .find()
+        .skip(skip)
+        .limit(Number(limit));
+    }
     const errors = { Article: ' not found' };
     const total = await this.model.countDocuments();
     if (!list) throw new HttpException({ errors }, 500);
     return {
       code: 0,
       data: { data: list, total },
+      message: '获取文章列表成功',
+    };
+  }
+
+  @Get('fuzzySearch')
+  @ApiOperation({ summary: '标题索引查找' })
+  async fuzzySearch(@Query() query) {
+    let { title = '' } = query,
+      where = {};
+    if (title) {
+      where['title'] = { $regex: new RegExp(title, 'i') };
+    }
+    const list = await this.model.find().where(where);
+    return {
+      code: 0,
+      data: { data: list, total: list.length },
       message: '获取文章列表成功',
     };
   }
@@ -73,7 +95,7 @@ export class ArticlesController {
   async add(@Body() body: Object) {
     try {
       const res = await this.model.create({ ...body });
-      console.log(res)
+      console.log(res);
       if (res) {
         return {
           code: 0,

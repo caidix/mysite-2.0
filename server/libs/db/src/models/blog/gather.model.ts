@@ -1,11 +1,12 @@
 import { prop, arrayProp, Ref, modelOptions } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Article } from './articles.model';
+
 @modelOptions({
   schemaOptions: { timestamps: true, toJSON: { virtuals: true } },
 })
-export class Tag {
-  @ApiProperty({ description: '标签名称' })
+export class Gather {
+  @ApiProperty({ description: '归档名字' })
   @prop({ required: true })
   name: String;
 
@@ -13,10 +14,14 @@ export class Tag {
   @prop()
   desc: String;
 
+  @ApiProperty({ description: '背景图片' })
+  @prop()
+  img: String;
+
   @arrayProp({
     ref: 'Article',
     localField: '_id',
-    foreignField: 'tags',
+    foreignField: 'gather',
   })
-  articles?: Ref<Article>[];
+  articles?: Ref<Article>;
 }

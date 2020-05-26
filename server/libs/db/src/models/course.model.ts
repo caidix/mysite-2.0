@@ -1,4 +1,4 @@
-import { prop, modelOptions, arrayProp, Ref } from '@typegoose/typegoose';
+import { prop, modelOptions, arrayProp, Ref, } from '@typegoose/typegoose';
 import { IsString } from "class-validator";
 import { ApiProperty } from '@nestjs/swagger';
 import { Episode } from './episode.model'

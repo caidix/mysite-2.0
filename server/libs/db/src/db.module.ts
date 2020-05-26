@@ -7,6 +7,7 @@ import { Episode } from './models/episode.model';
 import { Article } from './models/blog/articles.model';
 import { Tag } from './models/blog/tags.model';
 import { Category } from './models/blog/category.model';
+import { Gather } from './models/blog/gather.model';
 
 const models = TypegooseModule.forFeature([
   User,
@@ -14,7 +15,8 @@ const models = TypegooseModule.forFeature([
   Episode,
   Article,
   Tag,
-  Category
+  Category,
+  Gather,
 ]);
 
 @Global()

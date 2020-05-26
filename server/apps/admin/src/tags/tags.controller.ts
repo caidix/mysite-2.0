@@ -32,14 +32,19 @@ export class TagsController {
     description: 'Query options',
   })
   async list(@Query() query: QueryDto) {
-    let { limit = 10, page = 1, skip = 0 } = query;
+    let { limit = 10, page = 1, skip = 0, all = false } = query,
+      list = [];
     if (skip < 1) {
       skip = (page - 1) * limit;
     }
-    const list = await this.model
-      .find()
-      .skip(skip)
-      .limit(Number(limit));
+    if (all) {
+      list = await this.model.find();
+    } else {
+      list = await this.model
+        .find()
+        .skip(skip)
+        .limit(Number(limit));
+    }
     const total = await this.model.countDocuments();
     if (!list)
       throw new HttpException(

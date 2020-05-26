@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 export class QueryDto {
   @ApiProperty()
   limit?: number;
@@ -6,4 +6,6 @@ export class QueryDto {
   page?: number;
   @ApiProperty()
   skip?: number;
+  @ApiProperty()
+  all?: Boolean;
 }

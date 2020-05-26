@@ -10,7 +10,9 @@ import { Tag } from './tags.model';
 // import { Moment } from 'moment';
 // const moment = require('moment');
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({
+  schemaOptions: { timestamps: true, toJSON: { virtuals: true } },
+})
 export class Article {
   @ApiProperty({ description: '文章标题' })
   @prop({ validate: /\S+/, equired: true })

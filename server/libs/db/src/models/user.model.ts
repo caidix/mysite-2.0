@@ -2,8 +2,9 @@ import { prop, modelOptions } from '@typegoose/typegoose';
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { hashSync } from 'bcryptjs';
-
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({
+  schemaOptions: { timestamps: true, toJSON: { virtuals: true } },
+})
 export class User {
   @ApiProperty({ title: '用户名', example: 'admin' })
   @IsString()
