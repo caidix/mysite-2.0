@@ -16,7 +16,13 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://at.alicdn.com/t/font_1852995_t11b0d3k3m.css'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -25,7 +31,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['iview/dist/styles/iview.css', '~assets/css/reset.css', '~assets/css/layout.scss'],
+  css: [
+    'iview/dist/styles/iview.css',
+    '~assets/css/reset.css',
+    '~assets/css/layout.scss'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
@@ -70,6 +80,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) { }
+    extend(config, ctx) {}
   }
 }

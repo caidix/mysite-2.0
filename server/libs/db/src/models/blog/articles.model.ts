@@ -7,6 +7,8 @@ import {
 } from '@typegoose/typegoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Tag } from './tags.model';
+import { Category } from './category.model';
+import { Gather } from './gather.model';
 // import { Moment } from 'moment';
 // const moment = require('moment');
 
@@ -46,6 +48,20 @@ export class Article {
     refType: mongoose.Schema.Types.ObjectId,
   })
   tags?: Ref<Tag>[];
+
+  @ApiProperty({ description: '文章分类' })
+  @arrayProp({
+    ref: 'Category',
+    refType: mongoose.Schema.Types.ObjectId,
+  })
+  category?: Ref<Category>[];
+
+  @ApiProperty({ description: '文章归档' })
+  @prop({
+    ref: 'Gather',
+    refType: mongoose.Schema.Types.ObjectId,
+  })
+  gather?: Ref<Gather>;
 
   @ApiProperty({ description: '文章简介' })
   @prop({})

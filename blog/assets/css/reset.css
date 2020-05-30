@@ -31,7 +31,7 @@ select,
 textarea {
   /* for ie */
   /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
-  font: 12px/1 Tahoma, Helvetica, Arial, '\5b8b\4f53', sans-serif;
+  font: 14px/1 Tahoma, Helvetica, Arial, '\5b8b\4f53', sans-serif;
   font-family: 'STHeiti', 'Microsoft YaHei', 'Helvetica', 'Arial', sans-serif;
   /* 用 ascii 字符表示，使得在任何编码下都无问题 */
 }
@@ -171,4 +171,10 @@ html {
   display: block;
   clear: both;
   visibility: hidden;
+}
+
+
+@font-face {
+  font-family:cdmaobi;
+  src:url("../icon/maobi.ttf")；
 }

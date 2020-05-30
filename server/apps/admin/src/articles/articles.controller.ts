@@ -7,6 +7,7 @@ import {
   Delete,
   Post,
   Body,
+  Put,
 } from '@nestjs/common';
 import { Article } from '../../../../libs/db/src/models/blog/articles.model';
 import { InjectModel } from 'nestjs-typegoose';
@@ -109,6 +110,25 @@ export class ArticlesController {
         data: error,
         message: '添加失败',
       };
+    }
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: '修改文章' })
+  async update(@Param('id') id: string, @Body() body) {
+    try {
+      const res = await this.model.findOneAndUpdate({ _id: id }, body, {
+        new: true,
+        upsert: false,
+        runValidators: true,
+      });
+      return {
+        code: 0,
+        data: res,
+        message: '修改成功',
+      };
+    } catch (error) {
+      throw new HttpException(error, 400);
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="cd-blog_layout">
-    <div class="cd-blog_header isfixed"></div>
+    <Header />
     <div class="cd-blog_content">
       <nuxt />
     </div>
@@ -8,3 +8,12 @@
     <div class="cd-blog_bottom flex"></div>
   </div>
 </template>
+
+<script>
+import Header from '~/components/Header'
+export default {
+  components: {
+    Header
+  }
+}
+</script>
