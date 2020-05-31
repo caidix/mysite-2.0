@@ -34,6 +34,7 @@ export default {
   css: [
     'iview/dist/styles/iview.css',
     '~assets/css/reset.css',
+    'highlight.js/styles/monokai-sublime.css',
     '~assets/css/layout.scss'
   ],
   /*

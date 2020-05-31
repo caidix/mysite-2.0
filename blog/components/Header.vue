@@ -46,6 +46,7 @@ export default {}
     margin: 0 26px;
     cursor: pointer;
     font-size: 1rem;
+    transition: color 0.4s;
     i {
       margin-bottom: 4px;
       font-size: 1.5rem;
@@ -62,7 +63,9 @@ export default {}
       transform-origin: right;
       transition: transform 0.5s;
     }
-
+    &:hover {
+      color: #3498db;
+    }
     &:hover::after {
       transform: scaleX(1);
       transform-origin: left;
