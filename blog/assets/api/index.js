@@ -8,6 +8,15 @@ const getArticle = (params) => {
   })
 }
 
+const findOneArticle = (params) => {
+  return http.request({
+    method: 'get',
+    url: '/site/find',
+    params
+  })
+}
+
 export default {
-  getArticle
+  getArticle,
+  findOneArticle
 }

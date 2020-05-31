@@ -20,7 +20,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: 'https://at.alicdn.com/t/font_1852995_t11b0d3k3m.css'
+        href: 'https://at.alicdn.com/t/font_1852995_jr2c1gq6rf.css'
       }
     ]
   },
@@ -53,7 +53,8 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'moment'
   ],
   /*
    ** Axios module configuration

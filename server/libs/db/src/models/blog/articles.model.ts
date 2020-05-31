@@ -42,6 +42,12 @@ export class Article {
   })
   keyword?: String;
 
+  @ApiProperty({ description: '背景图片' })
+  @prop({
+    default: '',
+  })
+  img_url?: String;
+
   @ApiProperty({ description: '文章标签' })
   @arrayProp({
     ref: 'Tag',

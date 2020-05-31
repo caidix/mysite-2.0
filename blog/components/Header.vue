@@ -10,10 +10,20 @@
         <span class="header-text">CD</span>
       </Tooltip>
       <ul>
-        <nuxt-link to="/" tag="li">首页</nuxt-link>
-        <nuxt-link to="/" tag="li">文章</nuxt-link>
-        <nuxt-link to="/" tag="li">归档</nuxt-link>
-        <nuxt-link to="/" tag="li">关于我</nuxt-link>
+        <nuxt-link to="/" tag="li">
+          <i class="iconfont icon-shouye"></i>
+          首页
+        </nuxt-link>
+        <nuxt-link to="/" tag="li">
+          <i class="iconfont icon-fabuwenzhang"></i>
+          文章
+        </nuxt-link>
+        <nuxt-link to="/" tag="li">
+          <i class="iconfont icon-nav_wodeguidang"></i>归档
+        </nuxt-link>
+        <nuxt-link to="/" tag="li">
+          <i class="iconfont icon-wode"></i>关于我
+        </nuxt-link>
       </ul>
     </div>
   </header>
@@ -28,15 +38,22 @@ export default {}
   align-items: center;
   justify-content: center;
   li {
+    float: left;
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     margin: 0 26px;
     cursor: pointer;
     font-size: 1rem;
+    i {
+      margin-bottom: 4px;
+      font-size: 1.5rem;
+    }
     &::after {
       position: absolute;
       content: '';
-      top: 120%;
+      top: 110%;
       left: 0;
       width: 100%;
       height: 3px;
