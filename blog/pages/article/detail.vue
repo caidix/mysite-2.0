@@ -6,7 +6,17 @@
         <span>{{ data.updatedAt | momentTime }}</span>
       </div>
     </section>
-    <div v-html="data.articleContent" class="article-detail--content"></div>
+    <section class="article-detail--body">
+      <section class="article-detail--content">
+        <section v-if="data.introduction" class="detail-introduction">{{ data.introduction }}</section>
+        <section v-html="data.articleContent"></section>
+      </section>
+      <div v-if="data.toc" ref="toc" class="main-list">
+        <div class="detailed-nav comm-box">
+          <div :class="{ fixed: osTop }" class="toc-list" v-html="data.toc"></div>
+        </div>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -34,6 +44,9 @@ export default {
       data: data.data
     }
   },
+  mounted() {
+    document.addEventListener('scroll', this.watchScroll)
+  },
   computed: {
     backgroundImage() {
       // 根据背景图数组的长度随机选择索引
@@ -45,10 +58,57 @@ export default {
         backgroundImage: `url(${backgroundImage})`
       }
     }
+  },
+  data() {
+    return {
+      osTop: false
+    }
+  },
+  methods: {
+    watchScroll() {
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop
+      if (scrollTop > 750) {
+        this.osTop = true
+      }
+      if (scrollTop < 750) {
+        this.osTop = false
+      }
+    }
   }
 }
 </script>
 <style lang="scss">
+@media (max-width: 875px) {
+  .article-detail--title {
+    font-size: 2rem !important;
+    h1 {
+      font-size: 2rem !important;
+    }
+  }
+  table th,
+  table td {
+    padding: 0 !important;
+  }
+  pre > code {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+}
+@media (max-width: 768px) {
+  .article-detail--title {
+    font-size: 1rem !important;
+    h1 {
+      font-size: 1.3rem !important;
+    }
+  }
+  .article-detail--body {
+    width: 100% !important;
+  }
+  .main-list {
+    display: none !important;
+  }
+}
 .article-detail--header {
   background-size: cover;
   width: 100%;
@@ -74,38 +134,22 @@ export default {
     }
   }
 }
-.article-detail--content {
+.article-detail--body {
+  margin: -120px auto 0;
+  width: 60%;
   position: relative;
+}
+.article-detail--content {
+  border-radius: 1rem;
   box-shadow: 0 2px 10px var(--shadow-color);
   background: #fff;
-  width: 70%;
-}
-.hambuger {
-  height: 40px;
-  background: #e1f0ff;
-}
-.nav-title {
-  text-align: center;
-  color: #888;
-  border-bottom: 1px solid rgb(30, 144, 255);
-  font-size: 1rem;
-}
-.detailed-title {
-  font-size: 1.8rem;
-  text-align: center;
-  padding: 1rem;
-}
-.center {
-  text-align: center;
-}
-
-.detailed-content {
   padding: 1.3rem;
   font-size: 1.05rem;
   color: #000;
   line-height: 1.9rem;
   img {
     margin: 0 auto !important;
+    width: 100%;
   }
 
   ol > ul {
@@ -147,7 +191,28 @@ export default {
   h4 {
     font-size: 1.2rem;
   }
+
+  ol {
+    list-style: decimal;
+  }
+
+  ul {
+    list-style: disc;
+  }
 }
+.hambuger {
+  height: 40px;
+  background: #e1f0ff;
+}
+.detailed-title {
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 1rem;
+}
+.center {
+  text-align: center;
+}
+
 .detail-introduction {
   border: 3px solid #f6f6f6;
   text-align: center;
@@ -155,10 +220,20 @@ export default {
   margin: 5px 10px;
   box-shadow: 3px 3px 0 0 #f6f6f6;
 }
+.main-list {
+  position: absolute;
+  top: 130px;
+  right: -20rem;
+  width: 20rem;
+}
 .toc-list {
+  &.fixed {
+    position: fixed;
+  }
   padding: 0 10px;
-  max-height: 400px;
+  width: 300px;
   overflow-y: auto;
+  top: 120px;
   .anchor-ul {
     margin-left: 10px;
     position: relative;
@@ -176,6 +251,7 @@ export default {
     }
   }
   li {
+    margin: 5px 0;
     &:hover {
       color: rgb(41, 17, 253);
     }
@@ -223,7 +299,7 @@ table th {
 table th,
 table td {
   border: 1px solid #ccc;
-  padding: 6px 13px;
+  padding: 0.5rem 0.7rem;
 }
 
 table tr {
@@ -250,5 +326,8 @@ blockquote > :last-child {
 }
 .hljs-comment {
   color: #ff6a6a;
+}
+strong {
+  font-weight: bold;
 }
 </style>
