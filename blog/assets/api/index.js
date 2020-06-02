@@ -1,6 +1,6 @@
 import http from '../utils/http'
 
-const getArticle = (params) => {
+export const getArticle = (params) => {
   return http.request({
     method: 'get',
     url: '/site/list',
@@ -8,7 +8,7 @@ const getArticle = (params) => {
   })
 }
 
-const findOneArticle = (params) => {
+export const findOneArticle = (params) => {
   return http.request({
     method: 'get',
     url: '/site/find',
@@ -16,7 +16,10 @@ const findOneArticle = (params) => {
   })
 }
 
-export default {
-  getArticle,
-  findOneArticle
+export const getGather = (params) => {
+  return http.request({
+    method: 'get',
+    url: '/site/gather',
+    params
+  })
 }

@@ -30,8 +30,8 @@
             </span>
           </section>
           <section class="article-item--tag">
-            <Tag v-for="(cat, i) in item.category" :key="i" color="magenta">{{cat.name}}</Tag>
-            <Tag v-for="(tag, i) in item.tags" :key="i" color="cyan">{{tag.name}}</Tag>
+            <Tag v-for="(cat, i) in item.category" :key="i" color="magenta">{{ cat.name }}</Tag>
+            <Tag v-for="tag in item.tags" :key="tag._id" color="cyan">{{ tag.name }}</Tag>
           </section>
           <section class="article-item--info">{{ item.introduction }}</section>
         </section>
@@ -42,7 +42,7 @@
 
 <script>
 import moment from 'moment'
-import api from '~/assets/api/index.js'
+import { getArticle } from '~/assets/api/index.js'
 export default {
   transition: 'opacity',
   filters: {
@@ -52,7 +52,7 @@ export default {
     // filterArray(val) {}
   },
   async asyncData() {
-    const { data } = await api.getArticle()
+    const { data } = await getArticle()
     return {
       list: data.data.data
     }
@@ -139,7 +139,7 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
-      z-index: 10;
+      z-index: 2;
       text-align: center;
       border-radius: 0.5rem;
       width: 100%;

@@ -22,7 +22,7 @@
 
 <script>
 import moment from 'moment'
-import api from '~/assets/api/index.js'
+import { findOneArticle } from '~/assets/api/index.js'
 import markdown from '~/assets/utils/markdown.js'
 export default {
   filters: {
@@ -33,7 +33,7 @@ export default {
   },
   async asyncData({ query }) {
     if (!query.id) return
-    const { data } = await api.findOneArticle(query)
+    const { data } = await findOneArticle(query)
     const articleContent = markdown.marked(data.data.articleContent.content)
 
     await articleContent.then((response) => {

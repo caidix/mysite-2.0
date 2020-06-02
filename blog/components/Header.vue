@@ -1,5 +1,5 @@
 <template>
-  <header class="cd-blog_header isfixed">
+  <header class="cd-blog_header isfixed" :class="{ 'header-show': isShow }">
     <div class="header-menu">
       <Tooltip class="author-card" content="爱你哟么么哒~">
         <img
@@ -18,7 +18,7 @@
           <i class="iconfont icon-fabuwenzhang"></i>
           文章
         </nuxt-link>
-        <nuxt-link to="/" tag="li">
+        <nuxt-link to="/gather" tag="li">
           <i class="iconfont icon-nav_wodeguidang"></i>归档
         </nuxt-link>
         <nuxt-link to="/" tag="li">
@@ -30,7 +30,33 @@
 </template>
 
 <script>
-export default {}
+let windowTop = 200
+export default {
+  data() {
+    return {
+      isShow: true
+    }
+  },
+  mounted() {
+    document.addEventListener('scroll', this.watchScroll)
+  },
+  destroyed() {
+    document.removeEventListener('scroll', this.watchScroll)
+  },
+  methods: {
+    watchScroll() {
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop
+      if (scrollTop > windowTop) {
+        this.isShow = false
+        windowTop = scrollTop
+      } else {
+        this.isShow = true
+        windowTop = scrollTop
+      }
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .header-menu {
