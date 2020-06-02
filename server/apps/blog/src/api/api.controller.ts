@@ -76,4 +76,51 @@ export class ApiController {
       };
     }
   }
+  @Get('gather')
+  @ApiOperation({ summary: '查找所有归档' })
+  async findGather() {
+    try {
+      const res = await this.gatherModel.find().populate('article');
+      return {
+        code: 0,
+        data: res,
+        message: '获取成功',
+      };
+    } catch (error) {
+      return {
+        code: -1,
+        data: error,
+        message: '获取失败',
+      };
+    }
+  }
+  @Get('gather')
+  @ApiOperation({ summary: '查找单个文章信息' })
+  async findArticleByGather(@Query('id') id) {
+    try {
+      const res = await await this.articleModel.find(
+        {
+          gather: id,
+          draft: 0,
+        },
+        {
+          articleContent: 0,
+          gather: 0,
+          category: 0,
+          tags: 0,
+        },
+      );
+      return {
+        code: 0,
+        data: res,
+        message: '获取成功',
+      };
+    } catch (error) {
+      return {
+        code: -1,
+        data: error,
+        message: '获取失败',
+      };
+    }
+  }
 }
