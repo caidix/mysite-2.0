@@ -47,6 +47,9 @@ export default {
   mounted() {
     document.addEventListener('scroll', this.watchScroll)
   },
+  destroyed() {
+    document.removeEventListener('scroll', this.watchScroll)
+  },
   computed: {
     backgroundImage() {
       // 根据背景图数组的长度随机选择索引
@@ -234,6 +237,7 @@ export default {
   width: 300px;
   overflow-y: auto;
   top: 120px;
+  max-height: 600px;
   .anchor-ul {
     margin-left: 10px;
     position: relative;
