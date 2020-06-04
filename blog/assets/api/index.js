@@ -23,3 +23,12 @@ export const getGather = (params) => {
     params
   })
 }
+export const getArticleByGather = (id) => {
+  return http.request({
+    method: 'get',
+    url: '/site/articleByGather',
+    params: {
+      id
+    }
+  })
+}

@@ -15,7 +15,7 @@ import { ReturnModelType } from '@typegoose/typegoose';
 import { Category } from 'libs/db/models/blog/category.model';
 import { Tag } from 'libs/db/models/blog/tags.model';
 import { Gather } from 'libs/db/models/blog/gather.model';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery } from '@nestjs/swagger';
 @Controller('site')
 export class ApiController {
   constructor(
@@ -94,11 +94,17 @@ export class ApiController {
       };
     }
   }
-  @Get('gather')
-  @ApiOperation({ summary: '查找单个文章信息' })
+  @Get('articleByGather')
+  @ApiOperation({ summary: '查找归属某一归档的文章' })
+  @ApiQuery({
+    name: 'id',
+    type: String,
+    required: false,
+    description: 'Query options',
+  })
   async findArticleByGather(@Query('id') id) {
     try {
-      const res = await await this.articleModel.find(
+      const res = await this.articleModel.find(
         {
           gather: id,
           draft: 0,

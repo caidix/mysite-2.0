@@ -1,5 +1,5 @@
 <template>
-  <section class="article-detail">
+  <section v-if="data" class="article-detail">
     <section class="article-detail--header" :style="backgroundImage">
       <div class="article-detail--title">
         <h1>{{ data.title }}</h1>

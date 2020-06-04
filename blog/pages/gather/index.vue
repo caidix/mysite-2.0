@@ -1,12 +1,24 @@
 <template>
   <section class="gather-panel">
-    <section class="gather-background"></section>
+    <section class="gather-background">
+      <img
+        src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png"
+        alt
+      />
+    </section>
     <section class="gather-panel__body">
-      <section v-for="(item,index) in gatherList" :key="index" class="gather-item">
+      <section
+        v-for="(item, index) in gatherList"
+        :key="index"
+        class="gather-item"
+      >
         <div class="gather-inner" @click="getArticleByGather(item)">
           <div
             class="gather-banner"
-            :style="`background-image:url(${item.img || 'https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/guidang.jpg'})`"
+            :style="
+              `background-image:url(${item.img ||
+                'https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/guidang.jpg'})`
+            "
           ></div>
           <div class="gather-message">
             <p class="gather-title">
@@ -21,11 +33,25 @@
         </div>
       </section>
     </section>
+    <section>
+      <Modal v-model="showModal" :title="checkedItem.name" :footer-hide="true">
+        <div class="gather-article-list">
+          <nuxt-link
+            v-for="(item, index) in articleList[checkedItem._id]"
+            :key="index"
+            :to="{ path: '/article/detail', query: { id: item.id } }"
+            tag="a"
+          >
+            <p>[{{ index + 1 }}] {{ item.title }}</p>
+          </nuxt-link>
+        </div>
+      </Modal>
+    </section>
   </section>
 </template>
 
 <script>
-import { getGather } from '~/assets/api/index.js'
+import { getGather, getArticleByGather } from '~/assets/api/index.js'
 export default {
   async asyncData() {
     const { data } = await getGather()
@@ -35,7 +61,26 @@ export default {
   },
   data() {
     return {
-      gatherList: []
+      gatherList: [],
+      showModal: false,
+      articleList: {},
+      checkedItem: ''
+    }
+  },
+  methods: {
+    async getArticleByGather(item) {
+      if (this.articleList[item._id]) {
+        this.showModal = true
+        return
+      }
+      this.checkedItem = item
+      const { data } = await getArticleByGather(item._id)
+      if (data.code === 0) {
+        this.articleList[item._id] = data.data
+        this.showModal = true
+      } else {
+        this.$Message.error(data.message || '获取失败')
+      }
     }
   }
 }
@@ -43,22 +88,29 @@ export default {
 
 <style lang="scss" scoped>
 .gather-panel {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background: url('https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png')
-    100% 100%;
+  background: linear-gradient(#d1d9e0, #3de1ad);
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background: url('https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png');
+  // background-size: 100% 100%;
+}
+.gather-background {
+  img {
+    width: 100%;
+    height: 60vh;
+  }
 }
 .gather-panel__body {
   width: 80%;
-  margin: 0 auto;
+  margin: -120px auto 0;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  padding-top: 12vh;
   border-radius: 1rem;
+
   .gather-item::before {
     content: '';
     position: absolute;
@@ -113,6 +165,43 @@ export default {
     .gather-desc {
       color: rgb(99, 95, 95);
       padding-right: 0;
+    }
+  }
+}
+
+.gather-article-list {
+  padding: 10px;
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #303133;
+    margin-bottom: 10px;
+    &:hover {
+      text-shadow: 1px 1px 1px rgb(179, 168, 168);
+    }
+    p {
+      width: 70%;
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+@media (max-width: 1350px) {
+  .gather-item {
+    width: 50% !important;
+  }
+}
+@media (max-width: 875px) {
+  .gather-item {
+    width: 100% !important;
+  }
+  .gather-background {
+    img {
+      height: 40vh;
     }
   }
 }

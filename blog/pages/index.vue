@@ -9,57 +9,31 @@
       <i class="iconfont icon-xiangxia downdrop" @click="downDrop"></i>
     </section>
     <section class="cd-blog_body">
-      <nuxt-link
-        v-for="(item, index) in list"
-        :key="index"
-        :to="{ path: 'article/detail', query: { id: item._id } }"
-        tag="article"
-        class="article-item"
-      >
-        <section class="article-item--background">
-          <img :src="item.img_url" alt />
-        </section>
-        <section class="acticle-item-main">
-          <header class="article-item--title">{{ item.title }}</header>
-          <section class="article-item--tag">
-            <span>
-              <i class="iconfont icon-date"></i>
-              {{ item.updatedAt | momentTime }}
-              <i class="iconfont icon-fire"></i>
-              {{ item.likes }} 人
-            </span>
-          </section>
-          <section class="article-item--tag">
-            <Tag v-for="(cat, i) in item.category" :key="i" color="magenta">{{ cat.name }}</Tag>
-            <Tag v-for="tag in item.tags" :key="tag._id" color="cyan">{{ tag.name }}</Tag>
-          </section>
-          <section class="article-item--info">{{ item.introduction }}</section>
-        </section>
-      </nuxt-link>
+      <Spin v-if="spinShow" fix>
+        <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
+        <div>Loading</div>
+      </Spin>
+      <List :data="list" @fetch-data="fetchData" />
     </section>
   </section>
 </template>
 
 <script>
-import moment from 'moment'
 import { getArticle } from '~/assets/api/index.js'
+import List from '~/components/List'
 export default {
   transition: 'opacity',
-  filters: {
-    momentTime(val) {
-      return moment(val).format('YYYY-MM-DD HH:mm:ss')
-    }
-    // filterArray(val) {}
-  },
+  components: { List },
   async asyncData() {
     const { data } = await getArticle()
     return {
-      list: data.data.data
+      list: data.data
     }
   },
   data() {
     return {
-      list: []
+      list: [],
+      spinShow: false
     }
   },
   computed: {
@@ -77,11 +51,21 @@ export default {
         top: currentY,
         behavior: 'smooth'
       })
+    },
+    async fetchData(item) {
+      this.spinShow = true
+      const { data } = await getArticle(item)
+      if (data.code === 0) {
+        this.list = data.data
+      } else {
+        this.$Message.error(data.message || '获取失败')
+      }
+      this.spinShow = false
     }
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .container {
   @media (max-width: 875px) {
     .main-header {
@@ -156,57 +140,11 @@ export default {
   }
   .cd-blog_body {
     display: flex;
+    position: relative;
     flex-direction: column;
     margin-bottom: 1rem;
-    .article-item {
-      background: #fff;
-      width: 70%;
-      cursor: pointer;
-      margin: 3rem auto 0;
-      border-radius: 0.25rem;
-      box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
-        0 5px 15px rgba(0, 0, 0, 0.07);
-      // clip-path: polygon(9% 0%, 100% 0%, 100% 100%, 0% 100%);
-      overflow: hidden;
-      transition: all 0.5s;
-      display: flex;
-      &:hover {
-        transform: translateY(-0.5rem) translateZ(0);
-        box-shadow: 0 5px 10px 5px rgba(110, 110, 110, 0.4);
-      }
-      .article-item--background {
-        flex-shrink: 0;
-        width: 50%;
-        position: relative;
-
-        img {
-          border-radius: 0.25rem;
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .acticle-item-main {
-        padding: 1rem;
-        color: #32325d;
-        .article-item--title {
-          font-weight: 400;
-          font-size: 1.6rem;
-          margin-bottom: 1rem;
-        }
-        .icon-date {
-          color: #1e90ff;
-        }
-        .icon-fire {
-          color: #f20909;
-        }
-        .article-item--tag {
-          vertical-align: top;
-          margin-bottom: 1rem;
-        }
-        .article-item--info {
-          font-size: 1rem;
-        }
-      }
+    .spin-icon-load {
+      animation: ani-demo-spin 1s linear infinite;
     }
   }
 }
