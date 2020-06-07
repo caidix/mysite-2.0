@@ -13,26 +13,37 @@
         <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
         <div>Loading</div>
       </Spin>
-      <List :data="list" @fetch-data="fetchData" />
+      <List
+        :data="list"
+        :tags-data="tagsList"
+        :category-data="categoryList"
+        @fetch-data="fetchData"
+      />
     </section>
   </section>
 </template>
 
 <script>
-import { getArticle } from '~/assets/api/index.js'
+import { getArticle, getCategory, getTags } from '~/assets/api/index.js'
 import List from '~/components/List'
 export default {
   transition: 'opacity',
   components: { List },
   async asyncData() {
     const { data } = await getArticle()
+    const { data: categoryList } = await getCategory()
+    const { data: tagsList } = await getTags()
     return {
-      list: data.data
+      list: data.data,
+      categoryList: categoryList.data,
+      tagsList: tagsList.data
     }
   },
   data() {
     return {
       list: [],
+      categoryList: [],
+      tagsList: [],
       spinShow: false
     }
   },

@@ -32,3 +32,15 @@ export const getArticleByGather = (id) => {
     }
   })
 }
+export const getCategory = () => {
+  return http.request({
+    method: 'get',
+    url: '/site/category'
+  })
+}
+export const getTags = () => {
+  return http.request({
+    method: 'get',
+    url: '/site/tags'
+  })
+}

@@ -26,6 +26,16 @@
         </nuxt-link>
       </ul>
     </div>
+    <Drawer
+      title="Basic Drawer"
+      placement="left"
+      :closable="false"
+      v-model="value2"
+    >
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </Drawer>
   </header>
 </template>
 
@@ -34,7 +44,8 @@ let windowTop = 200
 export default {
   data() {
     return {
-      isShow: true
+      isShow: true,
+      value2: true
     }
   },
   mounted() {

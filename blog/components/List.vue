@@ -1,5 +1,23 @@
 <template>
   <section>
+    <article v-if="categoryData.length" class="article-lan">
+      <section>
+        <h1>Categories</h1>
+        <Divider />
+        <RadioGroup v-model="border">
+          <Radio label="所有" border></Radio>
+          <Radio v-for="item in categoryData" :key="item._id" :label="item.name" border></Radio>
+        </RadioGroup>
+      </section>
+      <section>
+        <h1>Tags</h1>
+        <Divider />
+        <RadioGroup v-model="border">
+          <Radio label="所有" border></Radio>
+          <Radio v-for="item in tagsData" :key="item._id" :label="item.name" border></Radio>
+        </RadioGroup>
+      </section>
+    </article>
     <nuxt-link
       v-for="(item, index) in data.data"
       :key="index"
@@ -44,6 +62,20 @@
 <script>
 import moment from 'moment'
 import table from '~/mixins/table'
+const tagColor = [
+  'primary',
+  'success',
+  'error',
+  'warning',
+  'lime',
+  'green',
+  'yellow',
+  'cyan',
+  'blue',
+  'geekblue',
+  'purple',
+  'magenta'
+]
 export default {
   filters: {
     momentTime(val) {
@@ -56,6 +88,19 @@ export default {
     data: {
       type: Object,
       default: () => {}
+    },
+    categoryData: {
+      type: Array,
+      default: () => []
+    },
+    tagsData: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      tagColor: Object.freeze(tagColor)
     }
   },
   methods: {
@@ -70,6 +115,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.article-lan {
+  padding: 1rem;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  section {
+    width: 50%;
+    flex: 1;
+  }
+}
 .article-item {
   background: #fff;
   width: 70%;
