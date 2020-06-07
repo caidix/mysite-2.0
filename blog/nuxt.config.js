@@ -36,10 +36,10 @@ export default {
    ** Global CSS
    */
   css: [
-    'iview/dist/styles/iview.css',
-    '~assets/css/reset.css',
+    '~assets/css/reset.scss',
     'highlight.js/styles/monokai-sublime.css',
-    '~assets/css/layout.scss'
+    '~assets/css/layout.scss',
+    'iview/dist/styles/iview.css'
   ],
   /*
    ** Plugins to load before mounting the App

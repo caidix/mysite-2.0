@@ -14,9 +14,9 @@
           <i class="iconfont icon-shouye"></i>
           首页
         </nuxt-link>
-        <nuxt-link to="/" tag="li">
-          <i class="iconfont icon-fabuwenzhang"></i>
-          文章
+        <nuxt-link to="/article" tag="li">
+          <i class="iconfont icon-tag"></i>
+          分类
         </nuxt-link>
         <nuxt-link to="/gather" tag="li">
           <i class="iconfont icon-nav_wodeguidang"></i>归档

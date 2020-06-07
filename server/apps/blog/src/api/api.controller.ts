@@ -29,20 +29,27 @@ export class ApiController {
     private readonly gatherModel: ReturnModelType<typeof Gather>,
   ) {}
   @Get('list')
+  @ApiQuery({
+    name: 'query',
+    type: String,
+    required: false,
+    description: 'Query options',
+  })
   async list(@Query() query) {
-    let { limit = 10, page = 1, skip = 0 } = query,
+    let { limit = 10, page = 1, skip = 0, category = '' } = query,
       list = [];
     if (skip < 1) {
       skip = (page - 1) * limit;
     }
+    let params = {};
+    if (category) {
+      params['category'] = category;
+    }
     list = await this.articleModel
-      .find(
-        {},
-        {
-          articleContent: 0,
-          gather: 0,
-        },
-      )
+      .find(params, {
+        articleContent: 0,
+        gather: 0,
+      })
       .populate(['category', 'tags'])
       .skip(skip)
       .limit(Number(limit))
@@ -128,5 +135,31 @@ export class ApiController {
         message: '获取失败',
       };
     }
+  }
+
+  @Get('category')
+  @ApiOperation({ summary: '查找分类' })
+  async getCategory() {
+    const data = await this.categoryModel.find();
+    // .populate('articles')
+    // .exec(function(err, docs) {
+    //   console.log(docs);
+    // });
+    return {
+      code: 0,
+      data: data,
+      message: '获取列表成功',
+    };
+  }
+
+  @Get('tags')
+  @ApiOperation({ summary: '查找标签' })
+  async getTags() {
+    const data = await this.tagModel.find();
+    return {
+      code: 0,
+      data: data,
+      message: '获取列表成功',
+    };
   }
 }

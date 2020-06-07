@@ -1,17 +1,10 @@
 <template>
   <section class="gather-panel">
     <section class="gather-background">
-      <img
-        src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png"
-        alt
-      />
+      <img src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png" alt />
     </section>
     <section class="gather-panel__body">
-      <section
-        v-for="(item, index) in gatherList"
-        :key="index"
-        class="gather-item"
-      >
+      <section v-for="(item, index) in gatherList" :key="index" class="gather-item">
         <div class="gather-inner" @click="getArticleByGather(item)">
           <div
             class="gather-banner"
@@ -90,11 +83,6 @@ export default {
 .gather-panel {
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(#d1d9e0, #3de1ad);
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
-  // background: url('https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png');
-  // background-size: 100% 100%;
 }
 .gather-background {
   img {

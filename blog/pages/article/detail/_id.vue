@@ -144,17 +144,24 @@ export default {
 }
 .article-detail--content {
   border-radius: 1rem;
-  box-shadow: 0 2px 10px var(--shadow-color);
+  box-shadow: 0 2px 10px #0178b8;
   background: #fff;
   padding: 1.3rem;
   font-size: 1.05rem;
   color: #000;
+  margin-bottom: 1rem;
   line-height: 1.9rem;
   img {
     margin: 0 auto !important;
-    width: 100%;
+    max-width: 100%;
   }
-
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace;
+    font-size: 14px;
+  }
   ol > ul {
     margin-left: 50px;
   }
@@ -168,7 +175,7 @@ export default {
     margin-top: 2rem;
     -webkit-margin-bottom-collapse: 2rem;
     color: #333;
-    font-size: 1.8 rem;
+    font-size: 1.8rem;
     font-weight: bold;
   }
   h2 {
@@ -194,13 +201,71 @@ export default {
   h4 {
     font-size: 1.2rem;
   }
-
-  ol {
-    list-style: decimal;
+  pre {
+    display: block;
+    background-color: #283646 !important;
+    padding: 0.5rem !important;
+    overflow-y: auto;
+    font-weight: 300;
+    font-family: Menlo, monospace;
+    border-radius: 0.3rem;
   }
 
-  ul {
-    list-style: disc;
+  pre > code {
+    border: 0px !important;
+    background-color: #283646 !important;
+    color: #ccc !important;
+  }
+  code {
+    display: inline-block;
+    background-color: #fff5f5;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ff502c;
+    margin: 0px 3px;
+    line-height: 1.1rem;
+  }
+  table {
+    margin: 0 auto;
+  }
+  table th {
+    font-weight: bold;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.7rem;
+  }
+
+  table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+  }
+  blockquote {
+    border-left: 4px solid #ddd;
+    padding: 0 15px;
+    color: #777;
+    margin-left: 20px;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0px;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0px;
+  }
+  .hljs-comment {
+    color: #ff6a6a;
+  }
+  strong {
+    font-weight: bold;
   }
 }
 .hambuger {
@@ -267,71 +332,5 @@ export default {
       }
     }
   }
-}
-pre {
-  display: block;
-  background-color: #283646 !important;
-  padding: 0.5rem !important;
-  overflow-y: auto;
-  font-weight: 300;
-  font-family: Menlo, monospace;
-  border-radius: 0.3rem;
-}
-
-pre > code {
-  border: 0px !important;
-  background-color: #283646 !important;
-  color: #ccc !important;
-}
-code {
-  display: inline-block;
-  background-color: #fff5f5;
-  border-radius: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #ff502c;
-  margin: 0px 3px;
-  line-height: 1.1rem;
-}
-table {
-  margin: 0 auto;
-}
-table th {
-  font-weight: bold;
-}
-
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 0.5rem 0.7rem;
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-blockquote {
-  border-left: 4px solid #ddd;
-  padding: 0 15px;
-  color: #777;
-  margin-left: 20px;
-}
-
-blockquote > :first-child {
-  margin-top: 0px;
-}
-
-blockquote > :last-child {
-  margin-bottom: 0px;
-}
-.hljs-comment {
-  color: #ff6a6a;
-}
-strong {
-  font-weight: bold;
 }
 </style>

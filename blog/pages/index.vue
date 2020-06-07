@@ -27,7 +27,6 @@
 import { getArticle, getCategory, getTags } from '~/assets/api/index.js'
 import List from '~/components/List'
 export default {
-  transition: 'opacity',
   components: { List },
   async asyncData() {
     const { data } = await getArticle()
@@ -78,24 +77,6 @@ export default {
 </script>
 <style lang="scss">
 .container {
-  @media (max-width: 875px) {
-    .main-header {
-      height: 50vh !important;
-    }
-    .downdrop {
-      display: none;
-    }
-    .cd-blog_body {
-      padding: 0 1rem;
-    }
-    .article-item {
-      flex-direction: column;
-      width: 100% !important;
-      .article-item--background {
-        width: 100% !important;
-      }
-    }
-  }
   @keyframes downdrop {
     0% {
       bottom: 10px;

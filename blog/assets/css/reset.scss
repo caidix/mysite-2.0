@@ -1,22 +1,18 @@
 /* 清除内外边距 */
 
-body, html {
-  background: #F2F2F2;
+body,
+html {
+  background: #f2f2f2;
 }
 
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
-        /* structural elements 结构元素 */
-
-        dl, dt, dd, ul, ol, li,
-        /* list elements 列表元素 */
-
-        pre,
-        /* text formatting elements 文本格式元素 */
-
-        fieldset, lengend, button, input, textarea,
-        /* form elements 表单元素 */
-
-        th, td {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr {
   /* table elements 表格元素 */
   margin: 0;
   padding: 0;
@@ -32,10 +28,12 @@ textarea {
   /* for ie */
   /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
   font: 14px/1 Tahoma, Helvetica, Arial, '\5b8b\4f53', sans-serif;
-  font-family: 'STHeiti', 'Microsoft YaHei', 'Helvetica', 'Arial', sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   /* 用 ascii 字符表示，使得在任何编码下都无问题 */
 }
-
+body {
+  background: url('https://cd-blog.oss-cn-shenzhen.aliyuncs.com/background/bak.svg');
+}
 h1 {
   font-size: 18px;
   /* 18px / 12px = 1.5 */
@@ -70,9 +68,11 @@ kbd,
 pre,
 samp,
 tt {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: monospace;
 }
-
+ol {
+  padding-left: 40px !important;
+}
 /* 统一等宽字体 */
 
 small {
@@ -80,13 +80,6 @@ small {
 }
 
 /* 小于 12px 的中文很难阅读，让 small 正常化 */
-
-/* 重置列表元素 */
-
-ul,
-ol {
-  list-style: none;
-}
 
 /* 重置文本格式元素 */
 
@@ -172,9 +165,24 @@ html {
   clear: both;
   visibility: hidden;
 }
-
-
-@font-face {
-  font-family:cdmaobi;
-  src:url("../icon/maobi.ttf")；
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.28s;
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+/*fade-transform*/
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 3s;
+}
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
