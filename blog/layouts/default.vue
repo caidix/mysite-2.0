@@ -4,7 +4,9 @@
     <div class="cd-blog_content">
       <nuxt />
     </div>
-    <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
+    <Footer class="layout-footer-center"
+      >2020-2020 &copy; CDHouse-我要变得更好</Footer
+    >
     <div class="cd-blog_bottom flex"></div>
   </div>
 </template>

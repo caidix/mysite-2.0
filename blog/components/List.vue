@@ -7,7 +7,7 @@
       tag="article"
       class="article-item"
     >
-      <section class="article-item--background">
+      <section v-if="item.img_url" class="article-item--background">
         <img :src="item.img_url" alt />
       </section>
       <section class="acticle-item-main">
