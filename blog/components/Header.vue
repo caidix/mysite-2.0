@@ -1,14 +1,14 @@
 <template>
   <header class="cd-blog_header isfixed" :class="{ 'header-show': isShow }">
-    <Tooltip class="author-card" content="爱你哟么么哒~">
-      <img
-        class="header-avator"
-        src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/avatar.jpg"
-        alt
-      />
-      <span class="header-text">CD</span>
-    </Tooltip>
     <div class="header-menu">
+      <Tooltip class="author-card" content="爱你哟么么哒~">
+        <img
+          class="header-avator"
+          src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/avatar.jpg"
+          alt
+        />
+        <span class="header-text">CD</span>
+      </Tooltip>
       <ul>
         <nuxt-link to="/" tag="li">
           <i class="iconfont icon-shouye"></i>
