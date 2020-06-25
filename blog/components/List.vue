@@ -28,7 +28,7 @@
       </section>
     </nuxt-link>
     <Page
-      v-if="data.data.length > 10"
+      v-if="data.total > 10"
       :total="data.total"
       class-name="article-pagination"
       :current="page"

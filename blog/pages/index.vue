@@ -49,7 +49,7 @@ export default {
   computed: {
     backgroundImage() {
       // 根据背景图数组的长度随机选择索引
-      const randIndex = Math.floor(Math.random() * 4 + 1)
+      const randIndex = Math.floor(Math.random() * 6 + 1)
       return `https://cd-blog.oss-cn-shenzhen.aliyuncs.com/background/background${randIndex}.jpg`
     }
   },
