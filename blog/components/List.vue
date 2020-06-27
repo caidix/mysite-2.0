@@ -1,11 +1,12 @@
 <template>
-  <section>
+  <section id="article-list">
+    <a id="article-anchor" href="javascript:void(0);"></a>
     <nuxt-link
       v-for="(item, index) in data.data"
       :key="index"
       :to="{ path: 'article/detail', query: { id: item._id } }"
       tag="article"
-      class="article-item"
+      class="article-item animate__fadeInUp"
     >
       <section v-if="item.img_url" class="article-item--background">
         <img :src="item.img_url" alt />
@@ -28,7 +29,7 @@
       </section>
     </nuxt-link>
     <Page
-      v-if="data.total > 10"
+      v-if="data.total > 2"
       :total="data.total"
       class-name="article-pagination"
       :current="page"
@@ -43,7 +44,7 @@
 
 <script>
 import moment from 'moment'
-import table from '~/mixins/table'
+import tableMixins from '~/mixins/table'
 const tagColor = [
   'primary',
   'success',
@@ -65,7 +66,7 @@ export default {
     }
     // filterArray(val) {}
   },
-  mixins: [table],
+  mixins: [tableMixins],
   props: {
     data: {
       type: Object,
@@ -83,6 +84,8 @@ export default {
         limit: this.limit,
         page: this.page
       })
+      const anchor = document.querySelector('#article-anchor')
+      anchor && anchor.focus()
     }
   }
 }
@@ -100,6 +103,7 @@ export default {
   overflow: hidden;
   transition: all 0.5s;
   display: flex;
+  animation-duration: 1s;
   &:hover {
     transform: translateY(-0.5rem) translateZ(0);
     box-shadow: 0 5px 10px 5px rgba(110, 110, 110, 0.4);

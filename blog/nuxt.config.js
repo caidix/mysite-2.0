@@ -39,7 +39,8 @@ export default {
     '~assets/css/reset.scss',
     'highlight.js/styles/monokai-sublime.css',
     '~assets/css/layout.scss',
-    'iview/dist/styles/iview.css'
+    'iview/dist/styles/iview.css',
+    '~assets/css/animate.min.css'
   ],
   /*
    ** Plugins to load before mounting the App

@@ -1,5 +1,5 @@
 <template>
-  <section class="gather-panel">
+  <section class="gather-panel animate__backInLeft">
     <section class="gather-background">
       <img src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png" alt />
     </section>
@@ -83,6 +83,7 @@ export default {
 .gather-panel {
   min-height: 100vh;
   width: 100%;
+  animation-duration: 1s;
 }
 .gather-background {
   img {

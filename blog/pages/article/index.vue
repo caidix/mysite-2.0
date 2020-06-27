@@ -2,7 +2,7 @@
   <div>
     <div></div>
     <div class="cd-blog_body lan">
-      <article v-if="categoryList.length" class="article-lan">
+      <section class="article-lan">
         <h1>Categories</h1>
         <Divider />
         <span
@@ -11,14 +11,15 @@
           :class="{ checked: ischecked === item._id }"
           class="category"
           @click="checkedCategory(item._id)"
-        >{{ item.name }}</span>
-      </article>
-      <article v-if="articleList">
+          >{{ item.name }}</span
+        >
+      </section>
+      <article v-if="list">
         <Spin v-if="spinShow" fix>
           <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
           <div>Loading</div>
         </Spin>
-        <List ref="list" :data="articleList" @fetch-data="fetchData" />
+        <List ref="list" :data="list" @fetch-data="fetchData" />
       </article>
       <section v-else>暂无资源</section>
     </div>
@@ -28,20 +29,21 @@
 <script>
 import List from '~/components/List'
 import { getCategory, getArticle } from '~/assets/api/index.js'
+import articleMixins from '~/mixins/get-articles.js'
 export default {
   components: { List },
+  mixins: [articleMixins],
   async asyncData() {
     const { data: categoryList } = await getCategory()
-    const { data: articleList } = await getArticle()
+    const { data: list } = await getArticle()
     return {
       categoryList: categoryList.data,
-      articleList: articleList.data
+      list: list.data
     }
   },
   data() {
     return {
       categoryList: [],
-      articleList: [],
       ischecked: ''
     }
   },
@@ -49,19 +51,6 @@ export default {
     checkedCategory(id) {
       this.ischecked = id
       this.$refs.list.fetchData()
-    },
-    async fetchData(item) {
-      this.spinShow = true
-      const { data } = await getArticle({
-        ...item,
-        category: this.ischecked
-      })
-      if (data.code === 0) {
-        this.articleList = data.data
-      } else {
-        this.$Message.error(data.message || '获取失败')
-      }
-      this.spinShow = false
     }
   }
 }
@@ -77,7 +66,7 @@ export default {
   background: #fff;
   border: 1px solid #e7eaf1;
   box-shadow: 0 1px 3px rgba(0, 37, 55, 0.06);
-  transition-duration: 0.4s;
+  transition-duration: 1s;
   &:hover {
     box-shadow: 0 1px 10px #777;
   }
