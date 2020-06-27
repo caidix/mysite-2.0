@@ -1,5 +1,5 @@
 <template>
-  <section class="gather-panel">
+  <section class="gather-panel animate__backInLeft">
     <section class="gather-background">
       <img src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/articlelist.png" alt />
     </section>
@@ -25,20 +25,25 @@
           </div>
         </div>
       </section>
-    </section>
-    <section>
-      <Modal v-model="showModal" :title="checkedItem.name" :footer-hide="true">
-        <div class="gather-article-list">
-          <nuxt-link
-            v-for="(item, index) in articleList[checkedItem._id]"
-            :key="index"
-            :to="{ path: '/article/detail', query: { id: item.id } }"
-            tag="a"
-          >
-            <p>[{{ index + 1 }}] {{ item.title }}</p>
-          </nuxt-link>
-        </div>
-      </Modal>
+      <section>
+        <Modal
+          v-model="showModal"
+          :title="checkedItem.name"
+          :footer-hide="true"
+          scrollable="true"
+        >
+          <div class="gather-article-list">
+            <nuxt-link
+              v-for="(item, index) in articleList[checkedItem._id]"
+              :key="index"
+              :to="{ path: '/article/detail', query: { id: item.id } }"
+              tag="a"
+            >
+              <p>[{{ index + 1 }}] {{ item.title }}</p>
+            </nuxt-link>
+          </div>
+        </Modal>
+      </section>
     </section>
   </section>
 </template>
@@ -83,6 +88,7 @@ export default {
 .gather-panel {
   min-height: 100vh;
   width: 100%;
+  animation-duration: 1s;
 }
 .gather-background {
   img {

@@ -1,5 +1,5 @@
 <template>
-  <div id="about-me">
+  <div id="about-me" class="animate__bounceInDown">
     <div class="title">
       <h1>我的简介</h1>
     </div>
@@ -96,6 +96,7 @@
   padding: 0 2rem;
   margin: 15vh auto 0;
   font-size: 1rem;
+  animation-duration: 1s;
   .title {
     font-weight: normal;
     font-style: normal;

@@ -39,18 +39,18 @@
         />
       </div>
       <ul class="drawer-ul">
-        <nuxt-link to="/" tag="li">
+        <nuxt-link to="/" tag="li" @click.native="drawerClose">
           <i class="iconfont icon-shouye"></i>
           首页
         </nuxt-link>
-        <nuxt-link to="/article" tag="li">
+        <nuxt-link to="/article" tag="li" @click.native="drawerClose">
           <i class="iconfont icon-tag"></i>
           分类
         </nuxt-link>
-        <nuxt-link to="/gather" tag="li">
+        <nuxt-link to="/gather" tag="li" @click.native="drawerClose">
           <i class="iconfont icon-nav_wodeguidang"></i>归档
         </nuxt-link>
-        <nuxt-link to="/mine" tag="li">
+        <nuxt-link to="/mine" tag="li" @click.native="drawerClose">
           <i class="iconfont icon-wode"></i>关于我
         </nuxt-link>
       </ul>
@@ -87,6 +87,9 @@ export default {
     },
     handleShowDrawer() {
       this.drawerShow = true
+    },
+    drawerClose() {
+      this.drawerShow = false
     }
   }
 }

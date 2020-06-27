@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <section class="main-header">
+    <section class="main-header animate__flipInX">
       <section class="site-meta">
         <h1 class="site-name">~Welcome to CD House~</h1>
         <h2 class="site-name">人生有梦,各自精彩</h2>
@@ -13,37 +13,22 @@
         <Icon type="ios-loading" size="18" class="spin-icon-load"></Icon>
         <div>Loading</div>
       </Spin>
-      <List
-        :data="list"
-        :tags-data="tagsList"
-        :category-data="categoryList"
-        @fetch-data="fetchData"
-      />
+      <List ref="list" :data="list" @fetch-data="fetchData" />
     </section>
   </section>
 </template>
 
 <script>
-import { getArticle, getCategory, getTags } from '~/assets/api/index.js'
+import { getArticle } from '~/assets/api/index.js'
+import articleMixins from '~/mixins/get-articles.js'
 import List from '~/components/List'
 export default {
   components: { List },
+  mixins: [articleMixins],
   async asyncData() {
     const { data } = await getArticle()
-    const { data: categoryList } = await getCategory()
-    const { data: tagsList } = await getTags()
     return {
-      list: data.data,
-      categoryList: categoryList.data,
-      tagsList: tagsList.data
-    }
-  },
-  data() {
-    return {
-      list: [],
-      categoryList: [],
-      tagsList: [],
-      spinShow: false
+      list: data.data
     }
   },
   computed: {
@@ -54,23 +39,17 @@ export default {
     }
   },
   methods: {
-    downDrop() {
+    downDrop(scrollTop = -1) {
+      const scrollY =
+        document.documentElement.scrollTop || document.body.scrollTop
       const currentY =
-        document.documentElement.clientHeight || document.body.clientHeight
+        scrollTop > -1
+          ? scrollY - scrollTop
+          : document.documentElement.clientHeight || document.body.clientHeight
       window.scrollTo({
         top: currentY,
         behavior: 'smooth'
       })
-    },
-    async fetchData(item) {
-      this.spinShow = true
-      const { data } = await getArticle(item)
-      if (data.code === 0) {
-        this.list = data.data
-      } else {
-        this.$Message.error(data.message || '获取失败')
-      }
-      this.spinShow = false
     }
   }
 }
