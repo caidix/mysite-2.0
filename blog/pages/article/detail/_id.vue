@@ -2,7 +2,7 @@
   <section v-if="data" class="article-detail">
     <section class="article-detail--header" :style="backgroundImage">
       <div class="article-detail--title">
-        <h1>{{ data.title }}</h1>
+        <h1 v-setTitle="data.title">{{ data.title }}</h1>
         <span>{{ data.updatedAt | momentTime }}</span>
       </div>
     </section>
@@ -24,12 +24,16 @@
 import moment from 'moment'
 import { findOneArticle } from '~/assets/api/index.js'
 import markdown from '~/assets/utils/markdown.js'
+import { setTitle } from '~/mixins/set-title'
 export default {
   filters: {
     momentTime(val) {
       return moment(val).format('YYYY-MM-DD HH:mm:ss')
     }
     // filterArray(val) {}
+  },
+  directives: {
+    setTitle
   },
   async asyncData({ query }) {
     if (!query.id) return
@@ -44,12 +48,6 @@ export default {
       data: data.data
     }
   },
-  mounted() {
-    document.addEventListener('scroll', this.watchScroll)
-  },
-  destroyed() {
-    document.removeEventListener('scroll', this.watchScroll)
-  },
   computed: {
     backgroundImage() {
       // 根据背景图数组的长度随机选择索引
@@ -61,6 +59,12 @@ export default {
         backgroundImage: `url(${backgroundImage})`
       }
     }
+  },
+  mounted() {
+    document.addEventListener('scroll', this.watchScroll)
+  },
+  destroyed() {
+    document.removeEventListener('scroll', this.watchScroll)
   },
   data() {
     return {
@@ -131,6 +135,8 @@ export default {
     font-size: 2.7rem;
     line-height: 1.67;
     color: #fff;
+    text-shadow: 0px -3px 4px #f59651, 0px -2px 3px #f59651,
+      0px -1.5px 2px #fb6229, 0px -1px 1.5px #fb6229, 0px -0.5px 1px #fb6229;
     h1 {
       font-size: 2.7rem;
       line-height: 1.67;

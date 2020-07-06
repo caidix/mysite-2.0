@@ -5,7 +5,8 @@
       v-for="(item, index) in data.data"
       :key="index"
       :to="{ path: 'article/detail', query: { id: item._id } }"
-      tag="article"
+      tag="a"
+      target="_blank"
       class="article-item animate__fadeInUp"
     >
       <section v-if="item.img_url" class="article-item--background">

@@ -6,7 +6,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'CD的个人小屋',
     meta: [
       { charset: 'utf-8' },
       {
@@ -17,11 +17,16 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'CD的个人小屋，只是记录自己的知识，没有认真打理请抱歉'
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href:
+          'http://cd-blog.oss-cn-shenzhen.aliyuncs.com/ebe2c395b5c0109cc929acabfdf4f77e.png'
+      },
       {
         rel: 'stylesheet',
         href: 'https://at.alicdn.com/t/font_1852995_mi7lhrph6vb.css'

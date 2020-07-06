@@ -38,6 +38,7 @@
               :key="index"
               :to="{ path: '/article/detail', query: { id: item.id } }"
               tag="a"
+              target="_blank"
             >
               <p>[{{ index + 1 }}] {{ item.title }}</p>
             </nuxt-link>
