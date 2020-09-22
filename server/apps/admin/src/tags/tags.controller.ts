@@ -60,7 +60,7 @@ export class TagsController {
 
   @Post()
   @ApiOperation({ summary: '创建标签列表' })
-  async create(@Body() body: createTag) {
+  async create(@Body() body) {
     const { name } = body;
     try {
       const res = await this.model.find({ name });
@@ -71,7 +71,7 @@ export class TagsController {
           message: '已存在该标签',
         };
       }
-      const data = await this.model.create({ ...body });
+      const data = await this.model.create({...body});
       if (data) {
         return {
           code: 0,

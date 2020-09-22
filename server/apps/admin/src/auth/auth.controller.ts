@@ -13,27 +13,24 @@ export class AuthController {
   constructor(
     private jwtService: JwtService,
     @InjectModel(User) private userModel: ReturnModelType<typeof User>,
-  ) { }
+  ) {}
   @Post('register')
   @ApiOperation({ summary: '注册' })
   async register(@Body() dto: User) {
     const { username, password } = dto;
-    const result = await this.userModel.find({ username })
+    const result = await this.userModel.find({ username });
     if (result && result.length > 0) {
       return {
         code: -1,
         data: '',
-        message: '已有联系人!'
-      }
+        message: '已有联系人!',
+      };
     }
-    const user = await this.userModel.create({
-      username,
-      password,
-    });
+    const user = await this.userModel.create(dto);
     return {
       code: 0,
       data: user,
-      message: '注册成功!'
+      message: '注册成功!',
     };
   }
 
@@ -43,9 +40,9 @@ export class AuthController {
   async login(@Body() dto: LoginDto, @CurrentUser() user: DocumentType<User>) {
     return {
       code: 0,
-      message: "登陆成功",
+      message: '登陆成功',
       data: {
-        token: this.jwtService.sign(String(user._id))
+        token: this.jwtService.sign(String(user._id)),
       },
     };
   }
@@ -57,8 +54,8 @@ export class AuthController {
   async user(@CurrentUser() user: DocumentType<User>) {
     return {
       code: 0,
-      message: "get myself message",
-      data: user
-    };;
+      message: 'get myself message',
+      data: user,
+    };
   }
 }

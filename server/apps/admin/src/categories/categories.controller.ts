@@ -61,7 +61,7 @@ export class CategoriesController {
 
   @Post()
   @ApiOperation({ summary: '创建分类列表' })
-  async create(@Body() body: createTag) {
+  async create(@Body() body) {
     const { name } = body;
     try {
       const res = await this.model.find({ name });

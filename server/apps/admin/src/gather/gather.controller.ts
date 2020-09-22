@@ -60,7 +60,7 @@ export class GatherController {
 
   @Post()
   @ApiOperation({ summary: '创建归档列表' })
-  async create(@Body() body: createGather) {
+  async create(@Body() body) {
     const { name } = body;
     try {
       const res = await this.model.find({ name });

@@ -10,6 +10,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { GatherModule } from './gather/gather.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TouristModule } from './tourist/tourist.module';
 const MAO = require('multer-aliyun-oss');
 @Module({
   imports: [
@@ -34,7 +35,8 @@ const MAO = require('multer-aliyun-oss');
     TagsModule,
     CategoriesModule,
     GatherModule,
-    UsersModule
+    UsersModule,
+    TouristModule
   ],
   controllers: [AppController],
   providers: [AppService],

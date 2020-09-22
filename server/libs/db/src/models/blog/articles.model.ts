@@ -77,19 +77,19 @@ export class Article {
   @prop({
     default: 0,
   })
-  draft: Number;
+  draft: number;
 
   @ApiProperty({ description: '浏览总数' })
   @prop({
     default: 0,
   })
-  viewCount: Number;
+  viewCount: number;
 
   @ApiProperty({ description: '浏览总数' })
   @prop({
     default: 0,
   })
-  likes: Number;
+  likes: number;
 
   // @prop({
   //   get(val) {

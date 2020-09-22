@@ -14,7 +14,6 @@ import { InjectModel } from 'nestjs-typegoose';
 import { ReturnModelType } from '@typegoose/typegoose';
 import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { QueryDto } from './dto/articles.dto';
-import { get } from 'http';
 
 @Controller('admin/articles')
 @ApiTags('文章')
@@ -93,9 +92,9 @@ export class ArticlesController {
 
   @Post()
   @ApiOperation({ summary: '添加文章' })
-  async add(@Body() body: Object) {
+  async add(@Body() body) {
     try {
-      const res = await this.model.create({ ...body });
+      const res = await this.model.create(body);
       console.log(res);
       if (res) {
         return {
