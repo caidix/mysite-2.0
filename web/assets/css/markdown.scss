@@ -1,0 +1,169 @@
+.article-detail__content {
+  img {
+    margin: 0 auto !important;
+    max-width: 100%;
+  }
+  code,
+  kbd,
+  pre,
+  samp {
+    font-family: monospace;
+    font-size: 14px;
+  }
+  ul,
+  li {
+    padding: 0;
+    margin: 0;
+  }
+  ol > ul {
+    margin-left: 50px;
+  }
+  ul {
+    margin-left: 40px;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 10px 10px;
+    padding: 0;
+  }
+  h1 {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d9dada;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    -webkit-margin-bottom-collapse: 2rem;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  h2 {
+    border-bottom: 1px solid #d9dada;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    -webkit-margin-bottom-collapse: 2rem;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  h3 {
+    border-left: 4px solid rgb(156, 203, 250);
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    -webkit-margin-bottom-collapse: 2rem;
+    color: #666;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  pre {
+    display: block;
+    background-color: #283646 !important;
+    padding: 0.5rem !important;
+    overflow-y: auto;
+    font-weight: 300;
+    font-family: Menlo, monospace;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }
+
+  pre > code {
+    border: 0px !important;
+    background-color: #283646 !important;
+    color: #ccc !important;
+    font-weight: normal;
+  }
+  code {
+    display: inline-block;
+    background-color: #fff5f5;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ff502c;
+    margin: 0px 3px;
+    line-height: 1.1rem;
+  }
+  table {
+    margin: 0 auto;
+  }
+  table th {
+    font-weight: bold;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem 0.7rem;
+  }
+
+  table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+  }
+  blockquote {
+    border-left: 4px solid #ddd;
+    padding: 0 15px;
+    color: #777;
+    margin-left: 20px;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0px;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0px;
+  }
+  .hljs-comment {
+    color: #ff6a6a;
+  }
+  strong {
+    font-weight: bold;
+  }
+  .language-javascript {
+    font-weight: normal;
+  }
+}
+.anchor-ul {
+  margin-left: 10px;
+  position: relative;
+  box-shadow: 0 0px 0px #fff;
+  list-style: disc;
+  padding-bottom: 5px;
+  line-height: 1.8rem;
+  li {
+    &:hover {
+      color: #007fff;
+      background-color: #ebedef;
+    }
+  }
+  ul {
+    list-style: decimal;
+    ul {
+      list-style: circle;
+      ul {
+        list-style: square;
+      }
+    }
+  }
+}
+.toc-link {
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+// 暗锚点
+.toc-h {
+  height: 64px;
+  margin-top: -64px;
+}
+
