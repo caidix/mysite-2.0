@@ -1,5 +1,5 @@
 import http from "./http";
-
+import { getUuid } from "@/modules/utils/auth";
 export const getArticle = (params) => {
   return http.request({
     method: "get",
@@ -15,7 +15,10 @@ export const findOneArticle = (params) => {
   return http.request({
     method: "get",
     url: "/site/find",
-    params,
+    params: {
+      ...params,
+      uuid: getUuid(),
+    },
   });
 };
 

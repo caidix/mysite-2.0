@@ -91,8 +91,12 @@ export default {
       snack: "",
     };
   },
-  mounted() {
-    this.getComment();
+  watch: {
+    id(val) {
+      if (val) {
+        this.getComment();
+      }
+    }
   },
   methods: {
     async getComment() {

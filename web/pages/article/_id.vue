@@ -10,7 +10,7 @@
       <section class="article-detail__content animate__fadeInUp">
         <section v-html="content.articleContent"></section>
       </section>
-      <comment-component :id="content._id" />
+      <comment-component :id="content._id || ''" />
     </section>
     <section v-else>加载中</section>
     <toc-component :toc="content.toc"></toc-component>
@@ -25,24 +25,23 @@ import "highlight.js/styles/monokai-sublime.css";
 import "@/assets/css/markdown.scss";
 import markdown from "@/modules/markdown";
 import { setTitle } from "@/modules/directive/set-title";
-import { getUuid } from "@/modules/utils/auth";
 import FormatTimeMixin from "@/modules/mixins/format-time";
 
 export default {
-  async asyncData({ query }) {
-    if (!query.id) return;
-    const { data } = await findOneArticle({ ...query, uuid: getUuid() });
-    if (data && data.code === 0) {
-      const articleContent = markdown.marked(data.data.articleContent.content);
-      await articleContent.then((response) => {
-        data.data.articleContent = response.content;
-        data.data.toc = response.toc;
-      });
-      return {
-        content: data.data,
-      };
-    }
-  },
+  // async asyncData({ query }) {
+  //   if (!query.id) return;
+  //   const { data } = await findOneArticle({ ...query });
+  //   if (data && data.code === 0) {
+  //     const articleContent = markdown.marked(data.data.articleContent.content);
+  //     await articleContent.then((response) => {
+  //       data.data.articleContent = response.content;
+  //       data.data.toc = response.toc;
+  //     });
+  //     return {
+  //       content: data.data,
+  //     };
+  //   }
+  // },
   components: { TocComponent, CommentComponent },
   directives: {
     setTitle,
@@ -64,6 +63,28 @@ export default {
       return {
         backgroundImage: `url(${backgroundImage})`,
       };
+    },
+  },
+  mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      const { query } = this.$route;
+      if (!query || !query.id) {
+        return;
+      }
+      const { data } = await findOneArticle(query);
+      if (data && data.code === 0) {
+        const articleContent = markdown.marked(
+          data.data.articleContent.content
+        );
+        await articleContent.then((response) => {
+          data.data.articleContent = response.content;
+          data.data.toc = response.toc;
+        });
+        this.content = data.data;
+      }
     },
   },
 };

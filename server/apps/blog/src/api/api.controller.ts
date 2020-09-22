@@ -70,7 +70,6 @@ export class ApiController {
         $regex: reg,
       };
     }
-    console.log(params);
     list = await this.articleModel
       .find(params, {
         articleContent: 0,
@@ -93,7 +92,6 @@ export class ApiController {
   @ApiOperation({ summary: '查找单个文章信息' })
   async findOne(@Query('id') id: String, @Query('uuid') uuid?: String) {
     try {
-      console.log(uuid);
       uuid && (await this.settingTourist(uuid, id));
       const res = await this.articleModel
         .findById(id)
@@ -274,8 +272,8 @@ export class ApiController {
   /**
    * 自增阅读量
    */
-  insertArticleView(id) {
-    this.articleModel.updateOne(
+  async insertArticleView(id) {
+    await this.articleModel.updateOne(
       { _id: id },
       {
         $inc: { viewCount: +1 },
