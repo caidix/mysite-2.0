@@ -267,6 +267,8 @@ export class ApiController {
     this.touristModel.create({
       uuid: uuid,
       readed: [articleId],
+      watched: [],
+      expireTime: new Date()
     });
   }
   /**
