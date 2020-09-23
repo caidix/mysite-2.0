@@ -104,7 +104,6 @@ export default {
     return {
       copyTips: false,
       total: 0,
-      limit: 12,
       page: 1,
       data: [],
       searchTags: [],
@@ -134,7 +133,7 @@ export default {
     async getArticle(type) {
       this.btnLoading();
       const { data } = await getArticle({
-        limit: 3,
+        limit: 6,
         page: this.page,
         tags: this.searchTags,
         keyword: this.searchInput,
