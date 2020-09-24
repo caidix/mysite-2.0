@@ -11,9 +11,9 @@
         multiple
       ></v-select>
     </v-row>
-    <v-row align="center" justify="center">
+    <v-row align="center" justify="center" class="mb-5">
       <v-text-field
-        class="text-field__width"
+        class="text-field__width search"
         hide-details
         single-line
         filled
@@ -57,7 +57,7 @@
         <span>重置</span>
       </v-tooltip>
     </v-row>
-    <v-row align="center" justify="center" class="mt-2">
+    <v-row align="center" justify="space-around" class="mt-2">
       <Card
         v-for="item in data"
         :key="item._id"
@@ -74,12 +74,15 @@
         :loading="isBtnLoading"
         @click="loadMoreArticle"
         color="primary"
-      >MORE</v-btn>
+        >MORE</v-btn
+      >
       <v-alert text color="pink accent-3" v-else>
         <div>我真的一滴也没有了</div>
       </v-alert>
     </v-row>
-    <v-snackbar v-model="copyTips">已成功复制文章地址！快去分享给小伙伴们吧!</v-snackbar>
+    <v-snackbar v-model="copyTips"
+      >已成功复制文章地址！快去分享给小伙伴们吧!</v-snackbar
+    >
   </div>
 </template>
 
@@ -165,5 +168,8 @@ export default {
 <style lang="scss" scoped>
 .text-field__width {
   max-width: 500px;
+}
+.search {
+  flex: 1 0;
 }
 </style>

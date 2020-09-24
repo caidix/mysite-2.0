@@ -47,8 +47,9 @@ http.interceptors.response.use(
     return res;
   },
   (error) => {
+    if (!error) return;
     let { message } = error;
-    const { data } = error.response;
+    const data = error.response && error.response.data;
     console.log("err" + error); // for debug
     if (message === "Network Error") {
       message = "后端接口连接异常";
