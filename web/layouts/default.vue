@@ -1,10 +1,18 @@
 <template>
   <v-app id="inspire">
     <v-loading :visible="$store.state.pageLoading"></v-loading>
-    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app width="200">
+    <v-navigation-drawer
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      app
+      width="200"
+    >
       <v-card-text class="text-center">
         <v-avatar color="teal" size="86">
-          <img src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/avatar.jpg" alt />
+          <img
+            src="https://cd-blog.oss-cn-shenzhen.aliyuncs.com/blog/avatar.jpg"
+            alt
+          />
         </v-avatar>
         <div class="text-h6">
           CD
@@ -34,9 +42,14 @@
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link :to="item.link">
+            <v-list-item
+              v-for="(child, i) in item.children"
+              :key="i"
+              link
+              :to="item.link"
+            >
               <v-list-item-action v-if="child.icon">
-                <v-icon :color="child.color|| ''">{{ child.icon }}</v-icon>
+                <v-icon :color="child.color || ''">{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title>{{ child.text }}</v-list-item-title>
@@ -45,7 +58,7 @@
           </v-list-group>
           <v-list-item v-else :key="item.text" link :to="item.link">
             <v-list-item-action>
-              <v-icon :color="item.color|| ''">{{ item.icon }}</v-icon>
+              <v-icon :color="item.color || ''">{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>{{ item.text }}</v-list-item-title>
@@ -65,9 +78,10 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <span
-        class="d-none d-lg-flex "
-        :class="$vuetify.theme.dark?'text-shining':'text-magic'"
-      >挑兮达兮，在城阙兮。一日不见，如三月兮！</span>
+        class="d-none d-lg-flex"
+        :class="$vuetify.theme.dark ? 'text-shining' : 'text-magic'"
+        >挑兮达兮，在城阙兮。一日不见，如三月兮！</span
+      >
       <v-spacer></v-spacer>
       <v-btn icon @click="handleSnackbar">
         <v-icon>mdi-calendar-range</v-icon>
@@ -80,16 +94,32 @@
     <v-main>
       <v-container
         fluid
-        :class="['background', $vuetify.theme.dark? 'background-dark':'background-light']"
+        :class="[
+          'background',
+          $vuetify.theme.dark ? 'background-dark' : 'background-light',
+        ]"
       >
         <nuxt />
       </v-container>
     </v-main>
     <!-- 时间提示 -->
-    <v-snackbar v-model="snackbar" content-class="text-center" color="blue" top centered rounded>
+    <v-snackbar
+      v-model="snackbar"
+      content-class="text-center"
+      color="blue"
+      top
+      centered
+      rounded
+    >
       {{ dateNow() }}
       <template v-slot:action="{ attrs }">
-        <v-btn color="pink lighten-2" icon text v-bind="attrs" @click="handleSnackbar">
+        <v-btn
+          color="pink lighten-2"
+          icon
+          text
+          v-bind="attrs"
+          @click="handleSnackbar"
+        >
           <v-icon>mdi-close-thick</v-icon>
         </v-btn>
       </template>

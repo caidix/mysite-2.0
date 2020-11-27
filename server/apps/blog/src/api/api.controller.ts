@@ -78,7 +78,7 @@ export class ApiController {
       .populate(['category', 'tags'])
       .skip(skip)
       .limit(Number(limit))
-      .sort({ createdAt: -1 });
+      .sort({ updatedAt: -1 });
     const errors = { Article: ' not found' };
     const total = await this.articleModel.countDocuments(params);
     if (!list) throw new HttpException({ errors }, 500);

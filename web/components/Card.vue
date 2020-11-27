@@ -106,8 +106,9 @@ export default {
       window.open(`/article?id=${this.data._id}`);
     },
     share() {
+      const { title, _id } = this.data;
       const result = this.$clipboard(
-        `${this.data.title}\n我觉得这篇文章写的不错，一起来看吧！`
+        `${location.host}/article?id=${_id}\n${title}\n我觉得这篇文章写的不错，一起来看吧！`
       );
       if (result) {
         this.$emit("handle-copy");
