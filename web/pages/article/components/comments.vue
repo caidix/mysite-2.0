@@ -1,5 +1,5 @@
 <template>
-  <div v-if="comments.length">
+  <div>
     <v-flex class="text-center">
       <div class="text-panel">
         <h1 class="comment" data-text="COMMENT">COMMENT</h1>
@@ -51,7 +51,7 @@
         <v-btn class="comment-btn" text block @click="handleComment">发表评论</v-btn>
       </div>
     </v-flex>
-    <div class="text-panel">
+    <div class="text-panel" v-if="comments.length">
       <h3>评论</h3>
       <v-list color="#d5d7e4" class="rounded-lg comment-list">
         <comment-list :data="comments" @reply="reply" />
@@ -130,7 +130,7 @@ export default {
         return;
       }
       if (!emailReg.test(email)) {
-        this.alertMessage = "搞措没，人家要真的邮箱啦！";
+        this.alertMessage = "搞错没，你输的是邮箱不！";
         this.$refs.email.focus();
         return;
       }
