@@ -4693,7 +4693,7 @@ hex-color-regex@^1.1.0:
 
 highlight.js@^10.0.3:
   version "10.0.3"
-  resolved "http://r.cnpmjs.org/highlight.js/download/highlight.js-10.0.3.tgz#5effcc58420f113f279a0badb8ac50c4be06e63b"
+  resolved "https://r.cnpmjs.org/highlight.js/download/highlight.js-10.0.3.tgz#5effcc58420f113f279a0badb8ac50c4be06e63b"
   integrity sha1-Xv/MWEIPET8nmgutuKxQxL4G5js=
 
 hmac-drbg@^1.0.0:
@@ -5776,7 +5776,7 @@ map-visit@^1.0.0:
 
 marked@^1.1.0:
   version "1.1.0"
-  resolved "http://r.cnpmjs.org/marked/download/marked-1.1.0.tgz#62504ad4d11550c942935ccc5e39d64e5a4c4e50"
+  resolved "https://r.cnpmjs.org/marked/download/marked-1.1.0.tgz#62504ad4d11550c942935ccc5e39d64e5a4c4e50"
   integrity sha1-YlBK1NEVUMlCk1zMXjnWTlpMTlA=
 
 md5.js@^1.3.4:
@@ -6007,7 +6007,7 @@ mixin-deep@^1.2.0:
 
 moment@^2.26.0:
   version "2.26.0"
-  resolved "http://r.cnpmjs.org/moment/download/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  resolved "https://r.cnpmjs.org/moment/download/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
   integrity sha1-Xh+Cxrr8pug+gIswyHBe7Q3L05o=
 
 move-concurrently@^1.0.1:
@@ -8963,9 +8963,9 @@ typescript@~3.8:
   integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
 
 ua-parser-js@^0.7.21:
-  version "0.7.21"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
-  integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
 
 uglify-js@3.4.x:
   version "3.4.10"
