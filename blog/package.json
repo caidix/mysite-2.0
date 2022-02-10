@@ -20,7 +20,7 @@
     "iview": "^3.1.5",
     "marked": "^1.1.0",
     "moment": "^2.26.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2"
   },
